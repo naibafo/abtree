@@ -12,8 +12,7 @@ int main () {
 	Tuple<int, int> first (k, m);
 	
 	Node< Tuple<int, int> > node1 (first);
-	
-	
+
 	cout << node1 << endl;
 	
 	Tuple<int, int> second (m, k);
@@ -22,4 +21,24 @@ int main () {
 	
 	cout << node1 << endl;
 	
+	m=7;
+	
+	Tuple<int, int> third (m, k);
+	
+	lol = node1.insert_key(third);
+	
+	cout << node1 << endl;
+	
+	
+	m=1;
+	
+	Tuple<int, int> fourth (m, k);
+
+	Node< Tuple<int, int> > node2 (fourth);
+	
+	m=15;
+	
+	Tuple<int, int> five (m, k);
+
 }
+
