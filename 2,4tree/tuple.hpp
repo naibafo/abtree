@@ -12,6 +12,7 @@ class Tuple {
 	public:
 		T key;
 		N object;
+		bool empty;
 		Tuple (T newKey, N object);
 		Tuple ();
 		Tuple (const Tuple &copy);
@@ -31,12 +32,12 @@ template <class T, class N>
 Tuple<T,N> :: Tuple (T newKey, N newObject){
 	this->key = newKey;
 	this->object = newObject;
+	this->empty = false;
 }
 
 template <class T, class N>
 Tuple<T,N> :: Tuple (){
-	this->key = NULL;
-	this->object = NULL;
+	this->empty = true;
 }
 
 template <class T, class N>

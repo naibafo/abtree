@@ -6,5 +6,8 @@ O = -o
 
 C = -c -Wall
 
-tuple : tupletest.cpp tuple.hpp
+tupletest : tupletest.cpp tuple.hpp
 	$(CC) $(O) tupletest.exe tupletest.cpp
+
+test: test.cpp
+	$(CC) $(O) test.exe test.cpp
