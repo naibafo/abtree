@@ -1,13 +1,13 @@
 #include <iostream>
 #include <cstdlib>
 #include <vector>
-#include "node.hpp"
 #include "tuple.hpp"
 #include "abtree.hpp"
 
 using namespace std;
 
 int main () {
+
 	int k = 1;
 	int m = 2;
 	Tuple<int, int> first (k, m);
@@ -23,6 +23,17 @@ int main () {
 	m=5;
 	Tuple<int, int> five  (m, k);
 	
+	Node < Tuple<int, int> > root ( first );
 	
+	abTree< Tuple<int, int> > tree ( first );
 
+	tree.make_graph("mygraph.gv");
+	
+	tree.insert(second);
+	
+	tree.make_graph("mygraph1.gv");
+	
+	tree.insert(third);
+
+	tree.make_graph("mygraph2.gv");
 }

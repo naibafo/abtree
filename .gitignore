@@ -15,3 +15,9 @@
 # Others
 *.gch
 *.exe
+*.png
+*.gv
+*.ps
+
+#Documentation Files
+./abtree/doc/*

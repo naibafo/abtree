@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cstdlib>
+#include <sstream>
 
 
 using namespace std;
@@ -7,26 +8,53 @@ using namespace std;
 #ifndef tuple
 #define tuple
 
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+/// Tuple Class
+////////////////////////////////////////////////////////////////////////////////////////////////////
+/*! Basically contains two elements. One is a key and other the object to contain.
+ */
+
 template <class T, class N>
 class Tuple {
 	public:
-		T key;
-		N object;
-		bool empty;
-		Tuple (T newKey, N object);
-		Tuple ();
-		Tuple (const Tuple &copy);
-		~Tuple ();
+////////////////////////////////////////////////////////////////////////////////////////////////////
+/// VARIABLES
+////////////////////////////////////////////////////////////////////////////////////////////////////
+		T key; /// The key, is used to compare the Tuples. Is a weight to each Tuple object
+		N object; /// Is the object itself to be stored in the Tuple
+		bool empty; /// A boolean to know if the Tuple has been created empty
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+/// CONSTRUCTORS / DESTRUCTOR
+////////////////////////////////////////////////////////////////////////////////////////////////////
+		Tuple (T newKey, N object); /// Constructor, needs the key and the object
+		Tuple (); /// Empty constructor
+		Tuple (const Tuple &copy); /// Copy constructor
+		~Tuple (); /// Destructor
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+/// OPERATOR OVERLOADING
+////////////////////////////////////////////////////////////////////////////////////////////////////
 		
-		bool operator<(Tuple const &reference);
-		bool operator>(Tuple const &reference);
-		bool operator== (Tuple const &reference);
+		string toString();
+		bool operator<(Tuple const &reference); /// Overload of < operator
+		bool operator>(Tuple const &reference); /// Overload of > operator
+		bool operator== (Tuple const &reference); /// Overload of == operator
 		
-		template <class Y, class O>
-		friend ostream& operator<< (ostream &out, Tuple<Y,O> print_vec);
+		
+		template <class Y, class O> 
+		friend ostream& operator<< (ostream &out, Tuple<Y,O> print_vec); ///  Overload to print the object
 };
 #endif
 
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+/// CONSTRUCTORS / DESTRUCTOR
+////////////////////////////////////////////////////////////////////////////////////////////////////
 
 template <class T, class N>
 Tuple<T,N> :: Tuple (T newKey, N newObject){
@@ -50,6 +78,9 @@ Tuple<T,N> :: Tuple (const Tuple &copy){
 	this->object = copy.object;
 }
 
+////////////////////////////////////////////////////////////////////////////////////////////////////
+/// OVERLOADING OPERATORS
+////////////////////////////////////////////////////////////////////////////////////////////////////
 template <class T, class N>
 bool Tuple<T,N> :: operator<(Tuple const &reference){
 	return (this->key < reference.key);
@@ -65,6 +96,7 @@ bool Tuple<T,N> :: operator==(Tuple const &reference){
 	return (this->key == reference.key);
 }
 
+
 template <class Y, class O>
 ostream& operator<< (ostream &out, Tuple<Y,O> print_vec){
 	
@@ -73,3 +105,29 @@ ostream& operator<< (ostream &out, Tuple<Y,O> print_vec){
 	return out;
 
 }
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+/// OTHER FUNCTIONS
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/// A function to parse a Tuple object 
+template <class T, class N>
+string Tuple<T,N> :: toString(){
+	string result;
+	
+	result.append("(");
+	
+	
+	stringstream ss;
+	ss << this->key;
+	string str = ss.str();
+	
+	result.append(str);
+	
+	result.append(")");
+	
+	return result;
+}
+
+
+
